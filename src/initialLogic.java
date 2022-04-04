@@ -47,6 +47,7 @@ public class initialLogic {
         }
     }
 public static boolean contributionChecking() //previously had it in the algorithm, but just wanted to make it cleaner. Adds more lines though
+        //It checks whether or not the user wants to deposit money
     {
         boolean checkContribution = true;
         boolean contribution = false;
@@ -66,7 +67,7 @@ public static boolean contributionChecking() //previously had it in the algorith
         return contribution;
     }
 
-    public static double userStartingValue() {
+    public static double userStartingValue() { //What value the initial investment is
         boolean check = true;
         double retVar = 0;
         while (check) {
@@ -82,7 +83,7 @@ public static boolean contributionChecking() //previously had it in the algorith
         return retVar;
     }
 
-    public static double userCompound() {
+    public static double userCompound() { //At what rate% they want it to compound
         boolean check = true;
         double retVar = 0;
         while (check) {
@@ -98,7 +99,7 @@ public static boolean contributionChecking() //previously had it in the algorith
         return retVar / 100 + 1;
     }
 
-    public static int tradingDays() {
+    public static int tradingDays() { //how many days they want to do it for
         boolean check = true;
         int retVar = 0;
         while (check) {
@@ -114,7 +115,7 @@ public static boolean contributionChecking() //previously had it in the algorith
         return retVar;
     }
 
-    public static int userAdd()
+    public static int userAdd() //how often the user wants to deposit
     {
         boolean check = true;
         while(check) {
@@ -138,7 +139,7 @@ public static boolean contributionChecking() //previously had it in the algorith
         };
             }
 
-    public static void  userAddValue()
+    public static void  userAddValue() //how much the user wants to deposit depending on their frequency
     {
         boolean check = true;
         while(check) {
