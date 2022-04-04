@@ -1,7 +1,11 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class initialLogic {
+public class Main {
+  public static double finalAmount;
+  public static double startingVar;
+    public static int tradingVar;
+    public static boolean contribution;
     private static String add;
     private static int addingFrequency;
     private static double addValue;
@@ -10,6 +14,7 @@ public class initialLogic {
 
     public static void main(String[] args) {
         algorithm(userStartingValue(), userCompound(), tradingDays());
+      finalAmount();
     }
 
     public static void algorithm(double startingValue, double compoundDaily, int tradingDay) {
@@ -19,7 +24,7 @@ public class initialLogic {
             addingFrequency = userAdd(); //how much are they depositing every (their frequency)
         }
         boolean checkForContribution;
-        double finalAmount = startingValue;
+        finalAmount = startingValue;
         double yesterdayAmount;
         for (int i = 1; i < tradingDay + 1; i++) { //There is an equation for this A = P(1+r)^t, but this allows for me to better visualize/edit
             System.out.println("Day " + i); //What day it is
@@ -50,7 +55,7 @@ public static boolean contributionChecking() //previously had it in the algorith
         //It checks whether or not the user wants to deposit money
     {
         boolean checkContribution = true;
-        boolean contribution = false;
+        contribution = false;
         System.out.println("Do you want to add money? y/n: ");
         scan.nextLine();
         while(checkContribution) {
@@ -69,18 +74,18 @@ public static boolean contributionChecking() //previously had it in the algorith
 
     public static double userStartingValue() { //What value the initial investment is
         boolean check = true;
-        double retVar = 0;
+        startingVar = 0;
         while (check) {
             try {
                 System.out.println("Starting Amount: ");
-                retVar = scan.nextDouble(); //return variable
+                startingVar = scan.nextDouble(); //return variable
                 check = false;
             } catch (Exception e) { //could use inputMismatch for more specific exception
                 String str = scan.nextLine(); // this is needed because it clears a buffer that would otherwise cause an infinite loop
                 System.out.println(str + " is not a valid number");
             }
         }
-        return retVar;
+        return startingVar;
     }
 
     public static double userCompound() { //At what rate% they want it to compound
@@ -101,18 +106,18 @@ public static boolean contributionChecking() //previously had it in the algorith
 
     public static int tradingDays() { //how many days they want to do it for
         boolean check = true;
-        int retVar = 0;
+        tradingVar = 0;
         while (check) {
             try {
                 System.out.println("Days expected to trade: ");
-                retVar = scan.nextInt();
+                tradingVar = scan.nextInt();
                 check = false;
             } catch (Exception e) {
                 System.out.println("Please Enter a Whole Number");
                 scan.nextLine();
             }
         }
-        return retVar;
+        return tradingVar;
     }
 
     public static int userAdd() //how often the user wants to deposit
@@ -154,4 +159,18 @@ public static boolean contributionChecking() //previously had it in the algorith
             }
         }
     }
+   public static void finalAmount()
+  {
+    System.out.println("");
+    System.out.println("Final Amount - $" + numberFormat.format(finalAmount));
+    if(contribution)
+    {
+      double finalVar = tradingVar / addingFrequency * addValue;    
+      System.out.println("From Investments - $" + numberFormat.format((finalAmount - startingVar - finalVar)));
+      System.out.println("From Deposits - $" + numberFormat.format(finalVar));
+    } else {
+      System.out.println("From Investments - $" + numberFormat.format((finalAmount - startingVar)));
+    }
+    System.out.println("Increase Of %" + numberFormat.format((finalAmount / startingVar * 100)));
+  }
 }
